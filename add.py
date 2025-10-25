@@ -47,6 +47,35 @@ try:
     globals()["_RemainderColsList"] = _RemainderColsList
     globals()["FunctionTransformer"] = FunctionTransformer
 
+    import builtins
+
+    def safe_load_joblib(path):
+        """تحميل الموديل مع معالجة الخطأ list() takes no keyword arguments"""
+        original_list = builtins.list
+
+        def patched_list(*args, **kwargs):
+            if kwargs:
+                return original_list(*args)
+            return original_list(*args, **kwargs)
+
+        builtins.list = patched_list
+        try:
+            return joblib.load(path)
+        finally:
+            builtins.list = original_list  # نرجع list الأصلية بعد التحميل
+
+    model = safe_load_joblib(MODEL_PATH)
+    st.sidebar.success("✅ تم تحميل الموديل بنجاح")
+
+except Exception as e:
+    st.sidebar.error(f"❌ خطأ في تحميل الموديل: {e}")
+    model = None
+
+
+    model = joblib.load(MODEL_PATH)
+    st.sidebar.success("✅ تم تحميل الموديل بنجاح")
+
+
     model = joblib.load(MODEL_PATH)
     st.sidebar.success("✅ تم تحميل الموديل بنجاح")
 except Exception as e:
