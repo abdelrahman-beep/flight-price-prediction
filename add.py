@@ -39,7 +39,7 @@ st.markdown("أدخل بيانات الرحلة لتوقع سعر التذكرة
 # ===============================
 # تحميل الموديل والبيانات
 # ===============================
-MODEL_PATH = os.path.join(os.getcwd(), "best_model1.pkl")
+MODEL_PATH = os.path.join(os.getcwd(), "best_model_v2.pkl")
 DATA_PATH = os.path.join(os.getcwd(), "Data_Train.xlsx")
 
 try:
