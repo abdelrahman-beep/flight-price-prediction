@@ -23,5 +23,5 @@ This project predicts flight ticket prices based on multiple features such as ai
 ## Installation
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/flight-price-prediction.git
+git clone https://github.com/abdelrahman-beep/flight-price-prediction.git
 cd flight-price-prediction
